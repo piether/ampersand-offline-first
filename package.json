@@ -1,0 +1,50 @@
+{
+  "name": "ampersand-offline-first",
+  "version": "0.0.1",
+  "main": "ampersand-offline-first.js",
+  "description": "localForage sync adapter for Ampersand.js",
+  "homepage": "https://github.com/neoscores/ampersand-offline-first",
+  "bugs": {
+    "url": "https://github.com/neoscores/ampersand-offline-first/issues"
+  },
+  "author": "Bob Hamblok <bob@neoscores.com> (http://bhamblok.io)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neoscores/ampersand-offline-first"
+  },
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "ampersand",
+    "ampersand-offline-first",
+    "backbone",
+    "indexeddb",
+    "localforage",
+    "localstorage",
+    "offline",
+    "offline-first",
+    "rest",
+    "storage",
+    "sync",
+    "websql"
+  ],
+  "dependencies": {
+    "ampersand-model": "^5.0.3",
+    "ampersand-rest-collection": "^4.0.0",
+    "ampersand-sync": "^3.0.7",
+    "ampersand-version": "^1.0.2",
+    "localforage": "^1.2.2",
+    "lodash.assign": "^3.0.0",
+    "lodash.clone": "^3.0.1",
+    "lodash.result": "^3.1.1",
+    "node-uuid": "^1.4.3"
+  },
+  "maintainers": [
+    "bhamblok <bob@neoscores.com>"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
