@@ -42,13 +42,15 @@ module.exports = Collection.extend({
 ```
 
 To actually make an *"Offline First"* model, you need to add a truthy "offline"-property.
-This offline-property can be an ampersand-state "props"-, "session"- or "derived"-property, or just any "offline"-property you attach to the model-object anywhere in your codebase.
+This offline-property can be an ampersand-state "props"-, "session"- or "derived"-property, or just any "**offline**"-property you attach to the model-object anywhere in your codebase.
 
 ```js
 var myModel = new MyModel();
 myModel.offline = true;
 myModel.save();
 ```
+
+## How does this module work?
 
 This module hijacks the ajax-call to your restfull server. Whenever the model has an "offline" property, it will be stored offline too in your browsers IndexedDB, WebSQL or LocalStorage.
 
