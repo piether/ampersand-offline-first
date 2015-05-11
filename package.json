@@ -2,7 +2,7 @@
   "name": "ampersand-offline-first",
   "version": "0.0.4",
   "main": "ampersand-offline-first.js",
-  "description": "localForage sync adapter for Ampersand.js",
+  "description": "Ampersand.js' ampersand-sync hijack with localForage",
   "homepage": "https://github.com/bhamblok/ampersand-offline-first",
   "bugs": {
     "url": "https://github.com/bhamblok/ampersand-offline-first/issues"
