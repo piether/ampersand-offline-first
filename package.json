@@ -1,6 +1,6 @@
 {
   "name": "ampersand-offline-first",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "ampersand-offline-first.js",
   "description": "Ampersand.js, ampersand-sync hijack with localForage",
   "homepage": "https://github.com/bhamblok/ampersand-offline-first",
