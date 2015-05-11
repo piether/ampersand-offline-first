@@ -1,6 +1,6 @@
 {
   "name": "ampersand-offline-first",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "ampersand-offline-first.js",
   "description": "localForage sync adapter for Ampersand.js",
   "homepage": "https://github.com/bhamblok/ampersand-offline-first",
