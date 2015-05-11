@@ -43,19 +43,18 @@ module.exports = Collection.extend({
 
 ## Configuration
 
-Require "ampersand-offline-first" and invoke the config-function with a configuration-object as an argument.
-These configurations are equal to the [configurations of localForage](https://github.com/mozilla/localForage#configuration)
+Require "ampersand-offline-first" and invoke the config-function with a configuration-object equal to the [configurations of localForage](https://github.com/mozilla/localForage#configuration). Make sure to call this function BEFORE the first ampersand-object has been trying to call any sync-method!!!
 
 ```js
 var offlineFirst = require('ampersand-offline-first');
 
 offlineFirst.config({
 	driver      : localforage.WEBSQL, // Force WebSQL; still rumoured to be faster than indexedDB
-  name        : 'ampersand-offline-first',
-  version     : 1.0,
-  size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
-  storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
-  description : 'ampersand offline first'
+	name        : 'ampersand-offline-first',
+	version     : 1.0,
+	size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+	storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
+	description : 'ampersand offline first'
 });
 ```
 
