@@ -1,6 +1,6 @@
 # ampersand-offline-first
 
-> [Ampersand.js](http://ampersandjs.com)' ampersand-sync hijack with [localForage](http://mozilla.github.io/localForage)
+> [Ampersand.js](http://ampersandjs.com), ampersand-sync hijack with [localForage](http://mozilla.github.io/localForage)
 
 ---
 

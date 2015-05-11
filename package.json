@@ -19,7 +19,6 @@
   "keywords": [
     "ampersand",
     "ampersand-offline-first",
-    "backbone",
     "indexeddb",
     "localforage",
     "localstorage",
