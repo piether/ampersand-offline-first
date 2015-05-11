@@ -1,6 +1,6 @@
 # ampersand-offline-first
 
-> [localForage](http://mozilla.github.io/localForage) sync adapter for [Ampersand.js](http://ampersandjs.com)
+> [Ampersand.js](http://ampersandjs.com)' ampersand-sync hijack with [localForage](http://mozilla.github.io/localForage)
 
 ---
 
