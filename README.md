@@ -82,4 +82,4 @@ This project is heavily used in the neoScores Native Web App. Of course, many th
 ## License
 
 Copyright (c) 2015 Bob Hamblok  
-Licensed under the [MIT license](LICENSE.md).
+Licensed under the [MIT license](LICENSE).
