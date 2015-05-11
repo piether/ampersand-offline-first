@@ -20,7 +20,7 @@ npm install --save ampersand-offline-first
 
 Instead of requiring "ampersand-model" or "ampersand-rest-collection", require "ampersand-offline-first" and use it's *Model* and/or *Collection* properties:
 
-### Models
+#### Models
 
 ```js
 var Model = require('ampersand-offline-first').Model;
@@ -30,7 +30,7 @@ module.exports = Model.extend({
 });
 ```
 
-### Collections
+#### Collections
 
 ```js
 var Collection = require('ampersand-offline-first').Collection;
@@ -40,6 +40,12 @@ module.exports = Collection.extend({
 	url: '/path/to/my/restfull/server/api/xxxx'
 });
 ```
+
+To actually make a model *Offline First*, it needs to have a truthy "offline"-property. This offline-property can be an ampersand-state "props"-, "session"- or "derived"-property, or just any "offline"-property you attach to the model-object anywhere in your codebase.
+This module hijacks the ajax-call to your restfull server, and whenever the model has an "offline" property, it will be stored offline too.
+A "time"-property will be added dynamically to compare future updates from the server. So your data keeps in sync, even if the user has been using another browser/device over multiple sessions, to come back later on to his first used browser/device.
+
+The give your app offline capabilities, (untill *[service-workers](http://www.html5rocks.com/en/tutorials/service-worker/introduction/)* have been fully supported), add a [cacheManifest](http://www.html5rocks.com/en/tutorials/appcache/beginner/) to your app.
 
 ## Configuration
 
@@ -57,7 +63,6 @@ offlineFirst.config({
 	description : 'ampersand offline first'
 });
 ```
-
 
 ## Credits
 
