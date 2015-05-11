@@ -58,6 +58,11 @@ A "time"-property will be added dynamically to compare future updates from the s
 
 The give your app offline capabilities, (untill *[service-workers](http://www.html5rocks.com/en/tutorials/service-worker/introduction/)* have been fully supported), add a [cacheManifest](http://www.html5rocks.com/en/tutorials/appcache/beginner/) to your app.
 
+## ATTENTION!
+
+Because models have to be able to be saved offline in real "offline" situations, an ID will be created for any NEW model, BEFORE it will be sent to the server.
+This means your server has to be able to receive POST-requests, to create records on your server, where the end-point includes the id.
+
 ## Configuration
 
 Require "ampersand-offline-first" and invoke the config-function with a configuration-object equal to the [configurations of localForage](https://github.com/mozilla/localForage#configuration). Make sure to call this function while bootstrapping your app, BEFORE(!!!) the first ampersand-object has been trying to call any sync-method!
