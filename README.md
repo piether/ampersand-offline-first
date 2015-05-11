@@ -64,6 +64,5 @@ This project is heavily used in the neoScores Native Web App. It drew inspiratio
 
 ## License
 
-Copyright (c) 2015 Bob Hamblok
-
+Copyright (c) 2015 Bob Hamblok  
 Licensed under the [MIT license](LICENSE.md).
