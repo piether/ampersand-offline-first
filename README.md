@@ -77,7 +77,7 @@ offlineFirst.config({
 
 ## Credits
 
-This project is heavily used in the neoScores Native Web App. It drew inspiration from [ConneXNL's port](https://github.com/ConneXNL/ampersand-sync-localstorage) of [Backbone.localStorage](https://github.com/jeromegn/Backbone.localStorage). Of course, many thanks go to the Ampersand.js team, as well as the developers at Mozilla who provide the localForage library.
+This project is heavily used in the neoScores Native Web App. Of course, many thanks go to the Ampersand.js team, as well as the developers at Mozilla who provide the localForage library.
 
 ## License
 
