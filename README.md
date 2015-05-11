@@ -43,7 +43,7 @@ module.exports = Collection.extend({
 
 ## Configuration
 
-Require "ampersand-offline-first" and invoke the config-function with a configuration-object equal to the [configurations of localForage](https://github.com/mozilla/localForage#configuration). Make sure to call this function BEFORE the first ampersand-object has been trying to call any sync-method!!!
+Require "ampersand-offline-first" and invoke the config-function with a configuration-object equal to the [configurations of localForage](https://github.com/mozilla/localForage#configuration). Make sure to call this function while bootstrapping your app, BEFORE(!!!) the first ampersand-object has been trying to call any sync-method!
 
 ```js
 var offlineFirst = require('ampersand-offline-first');
