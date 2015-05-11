@@ -61,7 +61,7 @@ The give your app offline capabilities, (untill *[service-workers](http://www.ht
 ## ATTENTION!
 
 Because models have to be able to be saved offline in real "offline" situations, an ID will be created for any NEW model, BEFORE it will be sent to the server.
-This means your server has to be able to receive POST-requests, to create records on your server, where the end-point includes the id.
+This means your server has to be able to receive POST-requests (for creating of new records), where the end-point includes the id (/path/to/my/restfull/server/api/model/id).
 
 ## Configuration
 
