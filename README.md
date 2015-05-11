@@ -26,7 +26,7 @@ Instead of requiring "ampersand-model" or "ampersand-rest-collection", require "
 var Model = require('ampersand-offline-first').Model;
 
 module.exports = Model.extend({
-	urlRoot: '/api/xxxx'
+	urlRoot: '/path/to/my/restfull/server/api/xxxx'
 });
 ```
 
@@ -37,7 +37,7 @@ var Collection = require('ampersand-offline-first').Collection;
 var MyModel = require('./my-model');
 
 module.exports = Collection.extend({
-	url: '/api/xxxx'
+	url: '/path/to/my/restfull/server/api/xxxx'
 });
 ```
 
@@ -47,13 +47,15 @@ Require "ampersand-offline-first" and invoke the config-function with a configur
 These configurations are equal to the [configurations of localForage](https://github.com/mozilla/localForage#configuration)
 
 ```js
-var offlineFirst = require('ampersand-offline-first'),
-	Model = require('ampersand-offline-first').Model,
-	Collection = require('ampersand-offline-first').Collection;
+var offlineFirst = require('ampersand-offline-first');
 
 offlineFirst.config({
-	name: 'neoScores',
-	storeName: 'app'
+	driver      : localforage.WEBSQL, // Force WebSQL; still rumoured to be faster than indexedDB
+  name        : 'ampersand-offline-first',
+  version     : 1.0,
+  size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+  storeName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.
+  description : 'ampersand offline first'
 });
 ```
 
