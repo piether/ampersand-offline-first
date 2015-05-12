@@ -52,7 +52,23 @@ myModel.offline = true;
 myModel.save();
 ```
 
-You can add an extra "complete"-callback to a "fetch"-method of your model/collection, which will be triggered whenever the syncing of your data has been fully completed, when the local and online data has been merged and updates are send back to the server.
+You can add an extra "complete"-callback to a "fetch"-method of your model/collection, which will be triggered whenever the syncing of your data has been fully completed (when the local and online data have been merged and when potential updates have been sent back to the server).
+
+```js
+var myCollection = new MyCollection();
+myCollection.fetch({
+	success: function(collection,response,options) {
+		// do some stuff, on each callback from online AND local data
+	},
+	error: function(collection,response,options) {
+		// do some stuff, on each callback from online AND local data
+	},
+	complete: function(collection,response,options) {
+		// do some stuff, when online AND local data have been merged successfully
+	}
+}
+});
+```
 
 ## How does this module work?
 
@@ -65,7 +81,7 @@ The give your app offline capabilities, (untill *[service-workers](http://www.ht
 ## ATTENTION!
 
 1. Because models have to be able to be saved offline in real "offline" situations, an ID will be created for any NEW model, BEFORE it will be sent to the server... This means your server has to be able to receive POST-requests (for creating of new records), where the end-point includes the id (/path/to/my/restfull/server/api/model/id).
-2. Your content potentially is comming from 2 sources (On- and Offline). So the success callback is called twice.
+2. Your content potentially is comming from 2 sources (On- and Offline). So when you fetch your data the options.success-callback is called twice.
 
 
 ## Configuration
