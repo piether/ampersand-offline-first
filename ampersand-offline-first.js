@@ -1,6 +1,7 @@
 'use strict';
 
-/*$AMPERSAND_VERSION*/
+require('es6-promise').polyfill();
+
 var localforage = require('localforage'),
 	Model = require('./lib/offline-first-model'),
   assign = require('lodash.assign'),
