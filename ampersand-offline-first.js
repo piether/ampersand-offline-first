@@ -9,6 +9,7 @@ var localforage = require('localforage'),
 
 module.exports = {
 	Model: Model,
+	storage: localforage,
 	Collection: Collection,
 	config: function(options) {
 		var defaults = {

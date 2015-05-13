@@ -76,8 +76,8 @@ myCollection.fetch({
 var MyModel = require('./my-model');
 MyModel.saveOffline();
 ```
-
-> #### TIP:
+---
+> #### TIP 1:
 > To automagically sync (on- and offline) everthing your user *edits* or *creates*, use the following:
 
 ```js
@@ -95,6 +95,18 @@ module.exports = Collection.extend({
 	}
 });
 ```
+---
+> #### TIP 2:
+> To fetch and save a models offline ONLY, get the localforage instance directely and do it manualy:
+
+```js
+var storage = require('ampersand-offline-first').storage;
+storage.setItem('myKey',myObject);
+storage.getItem('myKey').then(function(object) {
+	// do something with the response
+});
+```
+
 
 ## How does this module work?
 
