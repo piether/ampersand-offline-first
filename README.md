@@ -37,6 +37,7 @@ var Collection = require('ampersand-offline-first').Collection;
 var MyModel = require('./my-model');
 
 module.exports = Collection.extend({
+	model: MyModel,
 	url: '/path/to/my/restfull/server/api/xxxx'
 });
 ```
@@ -67,6 +68,31 @@ myCollection.fetch({
 		// do some stuff, when online AND local data have been merged successfully
 	}
 }
+});
+```
+
+#### Save a model ONLY offline
+```js
+var MyModel = require('./my-model');
+MyModel.saveOffline();
+```
+
+> #### TIP:
+> To automagically sync (on- and offline) everthing your user *edits* or *creates*, use the following:
+
+```js
+var Collection = require('ampersand-offline-first').Collection;
+var MyModel = require('./my-model');
+
+module.exports = Collection.extend({
+	model: MyModel,
+	url: '/path/to/my/restfull/server/api/xxxx',
+	initialize: function() {
+		this.on('change', function(model) {
+			model.save();
+		});
+		this.fetch();
+	}
 });
 ```
 
