@@ -7,7 +7,11 @@
   "bugs": {
     "url": "https://github.com/bhamblok/ampersand-offline-first/issues"
   },
-  "author": "Bob Hamblok <bob@neoscores.com> (http://bhamblok.io)",
+  "author": {
+    "name": "Bob Hamblok",
+    "email": "bob@neoscores.com",
+    "url": "http://bhamblok.io"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/bhamblok/ampersand-offline-first"
@@ -41,13 +45,23 @@
     "lodash.assign": "^3.0.0",
     "lodash.clone": "^3.0.1",
     "lodash.debounce": "^3.0.3",
+    "lodash.foreach": "^3.0.3",
     "lodash.result": "^3.1.1",
     "node-uuid": "^1.4.3"
   },
   "maintainers": [
-    "bhamblok <bob@neoscores.com>"
+    {
+      "name": "bhamblok",
+      "email": "bob@neoscores.com"
+    }
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  },
+  "readme": "# ampersand-offline-first\n\n> [Ampersand.js](http://ampersandjs.com), ampersand-sync hijack with [localForage](http://mozilla.github.io/localForage)\n\n---\n\nThis module hijacks the sync in the ampersand-sync method of your Ampersand models and rest-collections.\nIt uses [localForage](http://mozilla.github.io/localForage):\n> \"Offline storage, improved. Wraps IndexedDB, WebSQL, or localStorage using a simple but powerful API.\"\"\n\n**WARNING:** This project is still in its early stages, so expect some rough edges or missing functionality. Feel free to file an issue or submit a pull request, to help make this library the best it can be!\n\n## Installation\n\n```\nnpm install --save ampersand-offline-first\n```\n\n## Usage\n\nInstead of requiring \"ampersand-model\" or \"ampersand-rest-collection\", require \"ampersand-offline-first\" and use it's *Model* and/or *Collection* properties:\n\n#### Models\n\n```js\nvar Model = require('ampersand-offline-first').Model;\n\nmodule.exports = Model.extend({\n\turlRoot: '/path/to/my/restfull/server/api/xxxx'\n});\n```\n\n#### Collections\n\n```js\nvar Collection = require('ampersand-offline-first').Collection;\nvar MyModel = require('./my-model');\n\nmodule.exports = Collection.extend({\n\tmodel: MyModel,\n\turl: '/path/to/my/restfull/server/api/xxxx'\n});\n```\n\nTo actually make an *\"Offline First\"* model, you need to add a truthy \"offline\"-property.\nThis offline-property can be an ampersand-state \"props\"-, \"session\"- or \"derived\"-property, or just any \"**offline**\"-property you attach to the model-object anywhere in your codebase.\n\nNext is to use your models and collections as the ampersand-model and ampersand-rest-collection documentation tells you to do.\n\n```js\nvar myModel = new MyModel();\nmyModel.offline = true;\nmyModel.save();\n```\n\nYou can add an extra \"complete\"-callback to a \"fetch\"-method of your model/collection, which will be triggered whenever the syncing of your data has been fully completed (when the local and online data have been merged and when potential updates have been sent back to the server).\n\n```js\nvar myCollection = new MyCollection();\nmyCollection.fetch({\n\tsuccess: function(collection,response,options) {\n\t\t// do some stuff, on each callback from online AND local data\n\t},\n\terror: function(collection,response,options) {\n\t\t// do some stuff, on each callback from online AND local data\n\t},\n\tcomplete: function(collection,response,options) {\n\t\t// do some stuff, when online AND local data have been merged successfully\n\t}\n}\n});\n```\n\n#### Save a model ONLY offline\n```js\nvar MyModel = require('./my-model');\nMyModel.saveOffline();\n```\n---\n> #### TIP 1:\n> To automagically sync (on- and offline) everthing your user *edits* or *creates*, use the following:\n\n```js\nvar Collection = require('ampersand-offline-first').Collection;\nvar MyModel = require('./my-model');\n\nmodule.exports = Collection.extend({\n\tmodel: MyModel,\n\turl: '/path/to/my/restfull/server/api/xxxx',\n\tinitialize: function() {\n\t\tthis.on('change', function(model) {\n\t\t\tmodel.save();\n\t\t});\n\t\tthis.fetch();\n\t}\n});\n```\n---\n> #### TIP 2:\n> To fetch and save a models offline ONLY, get the localforage instance directely and do it manualy:\n\n```js\nvar storage = require('ampersand-offline-first').storage;\nstorage.setItem('myKey',myObject);\nstorage.getItem('myKey').then(function(object) {\n\t// do something with the response\n});\n```\n\n\n## How does this module work?\n\nThis module hijacks the ajax-call to your restfull server. Whenever the model has an \"offline\" property, it will be stored offline too in your browsers IndexedDB, WebSQL or LocalStorage.\n\nA \"time\"-property will be added dynamically to compare future updates from the server. So your data keeps in sync, even if the user has been using another browser/device over multiple sessions, to come back later on to his first used browser/device.\n\nThe give your app offline capabilities, (untill *[service-workers](http://www.html5rocks.com/en/tutorials/service-worker/introduction/)* have been fully supported), add a [cacheManifest](http://www.html5rocks.com/en/tutorials/appcache/beginner/) to your app.\n\n## ATTENTION!\n\n1. Because models have to be able to be saved offline in real \"offline\" situations, an ID will be created for any NEW model, BEFORE it will be sent to the server... This means your server has to be able to receive POST-requests (for creating of new records), where the end-point includes the id (/path/to/my/restfull/server/api/model/id).\n2. Your content potentially is comming from 2 sources (On- and Offline). So when you fetch your data the options.success-callback is called twice.\n\n\n## Configuration\n\nRequire \"ampersand-offline-first\" and invoke the config-function with a configuration-object equal to the [configurations of localForage](https://github.com/mozilla/localForage#configuration). Make sure to call this function while bootstrapping your app, BEFORE(!!!) the first ampersand-object has been trying to call any sync-method!\n\n```js\nvar offlineFirst = require('ampersand-offline-first');\n\nofflineFirst.config({\n\tdriver      : localforage.WEBSQL, // Force WebSQL; still rumoured to be faster than indexedDB\n\tname        : 'ampersand-offline-first',\n\tversion     : 1.0,\n\tsize        : 4980736, // Size of database, in bytes. WebSQL-only for now.\n\tstoreName   : 'keyvaluepairs', // Should be alphanumeric, with underscores.\n\tdescription : 'ampersand offline first'\n});\n```\n\n## Credits\n\nThis project is heavily used in the neoScores Native Web App. Of course, many thanks go to the Ampersand.js team, as well as the developers at Mozilla who provide the localForage library.\n\n## License\n\nCopyright (c) 2015 Bob Hamblok  \nLicensed under the [MIT license](LICENSE.md).\n",
+  "readmeFilename": "README.md",
+  "gitHead": "e80e39b42526fd889b98f8bc2fbc1a0fd1770e05",
+  "_id": "ampersand-offline-first@0.1.4",
+  "_shasum": "52bbc87a9cd3d190744d49a53ea9b26e08ecd70b",
+  "_from": "ampersand-offline-first@"
 }
