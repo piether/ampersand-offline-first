@@ -3,7 +3,7 @@
 require('es6-promise').polyfill();
 
 var localforage = require('localforage'),
-	localforageMixin = require('./lib/localforage-mixin');
+	localforageMixin = require('./lib/localforage-mixin'),
   assign = require('lodash.assign'),
 	Model = require('./lib/offline-first-model'),
 	Collection = require('./lib/offline-first-collection');
