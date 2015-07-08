@@ -70,29 +70,16 @@ myCollection.fetch({
 }
 });
 ```
-
-#### Save a model ONLY offline
-```js
-var MyModel = require('./my-model');
-MyModel.saveOffline();
-```
 ---
 > #### TIP 1:
-> To automagically sync (on- and offline) everthing your user *edits* or *creates*, use the following:
+> You can also just add the ampersand-offline-mixin to an existing model
 
 ```js
-var Collection = require('ampersand-offline-first').Collection;
+var offlineFirstMixin = require('ampersand-offline-first').mixin;
 var MyModel = require('./my-model');
 
-module.exports = Collection.extend({
-	model: MyModel,
-	url: '/path/to/my/restfull/server/api/xxxx',
-	initialize: function() {
-		this.on('change', function(model) {
-			model.save();
-		});
-		this.fetch();
-	}
+module.exports = MyModel.extend(offlineFirstMixin,{
+	// ...
 });
 ```
 ---

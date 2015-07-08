@@ -3,14 +3,16 @@
 require('es6-promise').polyfill();
 
 var localforage = require('localforage'),
-	Model = require('./lib/offline-first-model'),
+	localforageMixin = require('./lib/localforage-mixin');
   assign = require('lodash.assign'),
+	Model = require('./lib/offline-first-model'),
 	Collection = require('./lib/offline-first-collection');
 
 module.exports = {
 	Model: Model,
-	storage: localforage,
 	Collection: Collection,
+	storage: localforage,
+	mixin: localforageMixin,
 	config: function(options) {
 		// change "driver"-priority list: WebSQL is still rumoured to be faster than indexedDB
 		var defaults = {
