@@ -1,6 +1,6 @@
 'use strict';
 
-require('es6-promise').polyfill();
+if (typeof window.Promise !== 'function') require('es6-promise').polyfill();
 
 var localforage = require('localforage'),
 	localforageMixin = require('./lib/localforage-mixin'),
