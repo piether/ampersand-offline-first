@@ -14,6 +14,9 @@ module.exports = {
 	storage: localforage,
 	mixin: localforageMixin,
 	config: function(options) {
+		// set XHR module to use with ampersand-sync
+		localforageMixin.init(options.xhr ? options.xhr : require('xhr'));
+		
 		// change "driver"-priority list: WebSQL is still rumoured to be faster than indexedDB
 		var defaults = {
 			driver      : [localforage.WEBSQL,localforage.INDEXEDDB,localforage.LOCALSTORAGE],
