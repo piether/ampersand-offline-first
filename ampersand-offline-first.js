@@ -19,7 +19,7 @@ module.exports = {
 		
 		// change "driver"-priority list: WebSQL is still rumoured to be faster than indexedDB
 		var defaults = {
-			driver      : [localforage.WEBSQL,localforage.INDEXEDDB,localforage.LOCALSTORAGE],
+			driver      : [localforage.INDEXEDDB,localforage.WEBSQL,localforage.LOCALSTORAGE],
 	    name        : 'ampersand-offline-first',
 	    version     : 1.0,
 	    size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
