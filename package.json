@@ -39,6 +39,7 @@
   "dependencies": {
     "ampersand-model": "^7.0.0",
     "ampersand-rest-collection": "^5.0.0",
+    "ampersand-sync": "^4.0.3",
     "es6-promise": "^3.2.1",
     "localforage": "^1.4.2",
     "lodash.assign": "^4.0.9",
